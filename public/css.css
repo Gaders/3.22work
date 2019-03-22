@@ -1,0 +1,19 @@
+*{
+margin: 0 
+
+
+
+}
+.choose {
+    
+    border-radius: 10%;
+    position: absolute;
+    left: 48%;
+    top: 48%
+}
+.document_choose {
+    position: absolute;
+    left: 48%;
+    top: 40%
+
+}

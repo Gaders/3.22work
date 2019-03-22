@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>上传文件</title>
+    <style type="text/css">   
+#all{
+    width:100%;
+    height:30px;
+    border:1px solid rgb(87, 0, 128);    
+}
+#all_in{
+    width:0px;
+    height:30px;
+    background:rgb(87, 0, 128);
+    margin-left: 50   
+}    
+    </style>
+</head>
+<body>
+    <div id="all">
+        <div id="all_in"></div>
+    </div>       
+    <form action="/upload" enctype="multipart/form-data" method="post" class="form">
+        <input type="file" name="myfile" class="choose" > 
+        <input type="submit" class="document_choos" onclick="upload();">
+    </form>
+   <span id="precent"></span>
+</body>
+<script type="text/javascript">
+function upload(){
+    var pic=document.getElementsByTagName('input')[0].files[0];
+    var fd=new FormData();
+    var xhr=new XMLHttpRequest();
+    xhr.open('post','http://localhost:3000/upload',true);
+    xhr.onreadystatechange=function (){ 
+        if(this.readyState==4){
+            document.getElementById('precent').innerHTML=this.responseText;
+        }
+    }
+    xhr.upload.onprogress=function (ev){
+        if(ev.lengthComputable){
+            var precent=100 * ev.loaded/ev.total;
+            console.log(precent);
+            document.getElementById('all_in').style.width=precent+'%';
+            document.getElementById('precent').innerHTML=Math.floor(precent)+'%';
+        }
+    }
+    fd.append('pic',pic); 
+    xhr.send(fd);   
+}
+</script>
+</html>

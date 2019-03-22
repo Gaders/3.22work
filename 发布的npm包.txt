@@ -1,0 +1,3 @@
+url £ºhttps://www.npmjs.com/settings/chenxianqin/packages
+
+name £ºuploadcxq
